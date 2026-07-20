@@ -7,12 +7,40 @@ Completed:
 - Connected IntelliJ
 - Configured Git
 - Created Java project
-### Things I learned
 
-- Difference between Git and GitHub.
-- How to clone a repository.
-- Basic IntelliJ project structure.
+# Simulating Stock Prices
+- Created `StockModel` to store:
+  - Expected Annual return
+  - Annual Volatility
+  - Trading Days Per Year
+- Converted annual return into daily values
+- Implemented `simulateDailyReturn`
+- Implemented `simulateNextPrice`
+- Implemented `simulatePricePath` to simulate multiple trading days
+- Added unit tests for the simulator
 
-### Next Step
+## Key formulas
 
-Design the classes needed for the Monte Carlo simulator.
+Daily expected return
+
+$$
+\mu_{day} = \frac{\mu_{year}}{252}
+$$
+
+Daily volatility
+
+$$
+\sigma_{day} = \frac{\sigma_{year}}{\sqrt{252}}
+$$
+
+Daily return
+
+$$
+R = \mu_d + \sigma_d Z,\qquad Z \sim N(0,1)
+$$
+
+Next day's price
+
+$$
+S_{t+1} = S_t(1+R)
+$$
