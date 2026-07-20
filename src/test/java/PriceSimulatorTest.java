@@ -59,4 +59,27 @@ public class PriceSimulatorTest {
 
         assertEquals(100.1, nextPrice, 1e-12);
     }
+
+    @Test
+    void simulatePricePathTest() {
+        StockModel model = new StockModel(0.08, 0.20, 252);
+        RandomGenerator random = RandomGenerator.getDefault();
+        PriceSimulator simulator = new PriceSimulator(model, random);
+
+        double[] path = simulator.simulatePricePath(100.0, 0);
+
+        assertEquals(1, path.length);
+        assertEquals(100.0, path[0]);
+    }
+
+    @Test
+    void simulatePricePathLengthTest() {
+        StockModel model = new StockModel(0.08, 0.20, 252);
+        RandomGenerator random = RandomGenerator.getDefault();
+        PriceSimulator simulator = new PriceSimulator(model, random);
+
+        double[] path = simulator.simulatePricePath(100.0, 10);
+
+        assertEquals(11, path.length);
+    }
 }
