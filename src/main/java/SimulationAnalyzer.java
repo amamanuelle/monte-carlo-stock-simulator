@@ -9,7 +9,7 @@ public class SimulationAnalyzer {
         for (int simulation = 0; simulation < paths.length; simulation++) {
             double[] path = paths[simulation];
             validateValues(path);
-            finalPrices[simulation] = path[paths.length - 1];
+            finalPrices[simulation] = path[path.length - 1];
         }
 
         return finalPrices;
@@ -74,5 +74,41 @@ public class SimulationAnalyzer {
                     "Values must not be null or empty"
             );
         }
+    }
+
+    public double probabilityOfLoss(double[] finalPrices, double initialPrice) {
+        validateValues(finalPrices);
+
+        if (initialPrice <= 0) throw new IllegalArgumentException("Initial price must be positive");
+        int lossCount = 0;
+
+        for (double price : finalPrices) {
+            if (price < initialPrice) {
+                lossCount++;
+            }
+        }
+
+        return (double) lossCount / finalPrices.length;
+    }
+
+    public double valueAtRisk(double[] finalPrices, double initialPrice, double confidenceLevel) {
+        validateValues(finalPrices);
+
+        if (confidenceLevel <= 0 || confidenceLevel >= 1) {
+            throw new IllegalArgumentException(
+                    "Confidence level must be between 0 and 1."
+            );
+        }
+
+        double[] sortedPrices = finalPrices.clone();
+        Arrays.sort(sortedPrices);
+
+        double tailP = 1 - confidenceLevel;
+
+        int index = (int) Math.floor(
+                (tailP * sortedPrices.length) + 1e-10 //floating-point precision
+        );
+        double percentilePrice = sortedPrices[index];
+        return Math.max(0, initialPrice - percentilePrice);
     }
 }

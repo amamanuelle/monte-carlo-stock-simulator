@@ -61,4 +61,45 @@ public class SimulationAnalyzerTest {
                 summary
         );
     }
+
+    @Test
+    void probabilityOfLossTest() {
+        SimulationAnalyzer analyzer = new SimulationAnalyzer();
+
+        double[] prices = {80, 90, 100, 110, 120};
+
+        double result = analyzer.probabilityOfLoss(prices, 100);
+
+        assertEquals(0.4, result);
+    }
+
+    @Test
+    void valueAtRiskExceptionTest() {
+        SimulationAnalyzer analyzer = new SimulationAnalyzer();
+
+        double[] prices = {90, 100, 110};
+
+        assertThrows(
+                IllegalArgumentException.class,
+                () -> analyzer.valueAtRisk(prices, 100, 1.0)
+        );
+    }
+
+    @Test
+    void valueAtRiskTest() {
+        SimulationAnalyzer analyzer = new SimulationAnalyzer();
+
+        double[] prices = {
+                70, 80, 90, 100, 110,
+                120, 130, 140, 150, 160
+        };
+
+        double result = analyzer.valueAtRisk(
+                prices,
+                100,
+                0.80
+        );
+
+        assertEquals(10.0, result);
+    }
 }
