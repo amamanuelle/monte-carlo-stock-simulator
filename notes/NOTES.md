@@ -63,3 +63,9 @@ $$
 ## Challenges
 - Learned how percentile-based metrics such as VaR are computed from sorted simulation results.
 - Encountered floating-point precision issues when converting confidence levels into array indices and adjusted the implementation accordingly.
+
+## Sample Simulation
+
+The figure below shows several simulated stock price paths generated using the Monte Carlo simulation. Each line represents a different possible future outcome for the same stock, demonstrating how uncertainty causes prices to diverge over time.
+
+![Monte Carlo Simulation](../images/simulation-graph.png)

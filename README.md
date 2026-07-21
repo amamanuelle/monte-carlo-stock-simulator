@@ -14,3 +14,9 @@ I built this project to learn how stochastic simulations are used in finance and
 - Calculate expected return
 - Calculate volatility
 - Calculate Value at Risk (VaR)
+
+## Sample Simulation
+
+The figure below shows several simulated stock price paths generated using the Monte Carlo simulation. Each line represents a different possible future outcome for the same stock, demonstrating how uncertainty causes prices to diverge over time.
+
+![Monte Carlo Simulation](images/simulation-graph.png)
