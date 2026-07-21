@@ -49,3 +49,4 @@ $$
 # 27 july 2026
 ## Monte Carlo Simulation
 - Added a `simulateMonteCarlo` method that generates multiple independent stock price paths.
+- Created a `SimulationAnalyzer` class to analyze the results of Monte Carlo simulations. The class extracts the final stock price from each simulated path and computes descriptive statistics, including the mean, median, and five-number summary (minimum, Q1, median, Q3, and maximum).
