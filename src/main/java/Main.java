@@ -1,15 +1,19 @@
+import java.util.Arrays;
 import java.util.random.RandomGenerator;
 
 public class Main {
 
     public static void main(String[] args) {
-        StockModel model = new StockModel(0.08, 0.20, 252);
-        RandomGenerator random = RandomGenerator.getDefault();
-        PriceSimulator simulator = new PriceSimulator(model, random);
-        double[] result = simulator.simulatePricePath(1, 10);
-        for (double x : result) {
-            System.out.println(x);
+
+        StockModel model = new StockModel(0.10, 0.20, 252);
+        PriceSimulator simulator = new PriceSimulator(model, RandomGenerator.getDefault());
+
+        double[][] paths = simulator.simulateMonteCarlo(100.0, 100, 100);
+
+        for (int simulation = 0; simulation < paths.length; simulation++) {
+            System.out.println("Simulation " + (simulation + 1) + ":");
+            System.out.println(Arrays.toString(paths[simulation]));
+            System.out.println();
         }
-        System.out.println("Monte Carlo Stock Simulator");
     }
 }

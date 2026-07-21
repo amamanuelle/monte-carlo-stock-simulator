@@ -8,7 +8,7 @@ Completed:
 - Configured Git
 - Created Java project
 
-# Simulating Stock Prices
+## Simulating Stock Prices
 - Created `StockModel` to store:
   - Expected Annual return
   - Annual Volatility
@@ -44,3 +44,8 @@ Next day's price
 $$
 S_{t+1} = S_t(1+R)
 $$
+***
+
+# 27 july 2026
+## Monte Carlo Simulation
+- Added a `simulateMonteCarlo` method that generates multiple independent stock price paths.
