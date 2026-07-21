@@ -45,7 +45,6 @@ public class PriceSimulatorTest {
         PriceSimulator simulator = new PriceSimulator(model, random);
 
         double dailyReturn = simulator.simulateDailyReturn();
-
         assertEquals(0.001, dailyReturn);
     }
 
@@ -81,5 +80,32 @@ public class PriceSimulatorTest {
         double[] path = simulator.simulatePricePath(100.0, 10);
 
         assertEquals(11, path.length);
+    }
+
+    @Test
+    void simulateMonteCarloExceptionTest() {
+        StockModel model = new StockModel(0.10, 0.20, 252);
+        PriceSimulator simulator =
+                new PriceSimulator(model, RandomGenerator.getDefault());
+
+        assertThrows(
+                IllegalArgumentException.class,
+                () -> simulator.simulateMonteCarlo(100.0, 10, 0)
+        );
+    }
+
+    @Test
+    void simulateMonteCarloLengthTest() {
+        StockModel model = new StockModel(0.10, 0.20, 252);
+        PriceSimulator simulator = new PriceSimulator(model, RandomGenerator.getDefault());
+
+        double[][] paths = simulator.simulateMonteCarlo(100.0, 10, 5);
+
+        assertEquals(5, paths.length);
+
+        for (double[] path : paths) {
+            assertEquals(100.0, path[0]);
+            assertEquals(11, path.length);
+        }
     }
 }

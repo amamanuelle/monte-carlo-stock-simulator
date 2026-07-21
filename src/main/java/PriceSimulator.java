@@ -40,4 +40,15 @@ public class PriceSimulator {
 
         return prices;
     }
+
+    public double[][] simulateMonteCarlo(double initialPrice, int numOfDays, int numOfSimulations) {
+        if (numOfSimulations <= 0) throw new IllegalArgumentException("Number of simulations must be positive");
+        double[][] result = new double[numOfSimulations][numOfDays + 1];
+
+        for (int simulation = 0; simulation < numOfSimulations; simulation++) {
+            result[simulation] = simulatePricePath(initialPrice, numOfDays);
+        }
+
+        return result;
+    }
 }
