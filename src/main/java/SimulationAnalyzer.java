@@ -2,6 +2,14 @@ import java.util.Arrays;
 
 public class SimulationAnalyzer {
 
+    /**
+     * Extracts the final price from each simulated price path.
+     *
+     * @param paths simulated stock price paths
+     * @return an array containing the final price of each path
+     * @throws IllegalArgumentException if the paths are null, empty,
+     *                                  or contain invalid paths
+     */
     public double[] extractFinalPrices(double[][] paths) {
         if (paths == null || paths.length == 0) throw new IllegalArgumentException("Paths must not be empty or null");
 
@@ -14,7 +22,12 @@ public class SimulationAnalyzer {
 
         return finalPrices;
     }
-
+    /**
+     * Calculates the arithmetic mean of an array of values.
+     *
+     * @param values values to analyze
+     * @return arithmetic mean
+     */
     public double mean(double[] values) {
         validateValues(values);
         double sum = 0;
@@ -26,6 +39,11 @@ public class SimulationAnalyzer {
         return (double) sum / values.length;
     }
 
+    /**
+     * Calculates the median of an array of values
+     * @param values values to analyze
+     * @return median value
+     */
     public double median(double[] values) {
         validateValues(values);
 
@@ -41,6 +59,11 @@ public class SimulationAnalyzer {
     }
 
 
+    /**
+     * Calculates the Five Number Summary: minimum, Q1, median, Q3, maximum
+     * @param values values to analyze
+     * @return five number summary
+     */
     public double[] fiveNumberSummary(double[] values) {
         validateValues(values);
 
@@ -68,6 +91,10 @@ public class SimulationAnalyzer {
         return new double[]{minimum, q1, median, q3, maximum};
     }
 
+    /**
+     * Helper method to validate an array of values
+     * @param values values to validate
+     */
     private void validateValues(double[] values) {
         if (values == null || values.length == 0) {
             throw new IllegalArgumentException(
@@ -76,6 +103,12 @@ public class SimulationAnalyzer {
         }
     }
 
+    /**
+     * Calculates the probability of loss (final prices less than start price)
+     * @param finalPrices simulated final prices
+     * @param initialPrice starting stock price
+     * @return probability of loss
+     */
     public double probabilityOfLoss(double[] finalPrices, double initialPrice) {
         validateValues(finalPrices);
 
@@ -91,6 +124,13 @@ public class SimulationAnalyzer {
         return (double) lossCount / finalPrices.length;
     }
 
+    /**
+     * Calculates the Value at Risk (VaR) at a specified confidence level
+     * @param finalPrices simulated ending prices
+     * @param initialPrice starting stock price
+     * @param confidenceLevel confidence level
+     * @return estimated maximum loss
+     */
     public double valueAtRisk(double[] finalPrices, double initialPrice, double confidenceLevel) {
         validateValues(finalPrices);
 

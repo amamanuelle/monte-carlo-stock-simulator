@@ -22,10 +22,18 @@ public class StockModel {
         this.tradingDaysPerYear = tradingDaysPerYear;
     }
 
+    /**
+     * Calculates the expected daily return
+     * @return the expected daily return
+     */
     public double getExpectedDailyReturn() {
         return expectedAnnualReturn / tradingDaysPerYear;
     }
 
+    /**
+     * Calculates the daily volatility
+     * @return the daily volatility
+     */
     public double getDailyVolatility() {
         return annualVolatility / Math.sqrt(tradingDaysPerYear);
     }

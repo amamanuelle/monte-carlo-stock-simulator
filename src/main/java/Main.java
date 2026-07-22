@@ -6,19 +6,14 @@ public class Main {
     public static void main(String[] args) {
 
         StockModel model = new StockModel(0.10, 0.20, 252);
-        PriceSimulator simulator =
-                new PriceSimulator(model, RandomGenerator.getDefault());
+        PriceSimulator simulator = new PriceSimulator(model, RandomGenerator.getDefault());
         SimulationAnalyzer analyzer = new SimulationAnalyzer();
 
         double initialPrice = 100.0;
         int numberOfDays = 252;
-        int numberOfSimulations = 1000;
+        int numberOfSimulations = 30;
 
-        double[][] paths = simulator.simulateMonteCarlo(
-                initialPrice,
-                numberOfDays,
-                numberOfSimulations
-        );
+        double[][] paths = simulator.simulateMonteCarlo(initialPrice, numberOfDays, numberOfSimulations);
 
         double[] finalPrices = analyzer.extractFinalPrices(paths);
         double mean = analyzer.mean(finalPrices);
@@ -44,6 +39,6 @@ public class Main {
         System.out.println("Maximum: " + summary[4]);
 
         SimulationGraph graph = new SimulationGraph();
-        graph.showPricePaths(paths, 10);
+        graph.showPricePaths(paths, numberOfSimulations);
     }
 }

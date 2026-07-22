@@ -1,22 +1,34 @@
-# Monte Carlo Stock Simulator
-A Java project that explores quantitative finance through Monte Carlo simulation.
+# Monte Carlo Stock Price Simulator
+
+A Java application that simulates future stock prices using Monte Carlo methods. The project explores quantitative finance concepts by generating thousands of possible stock price paths, analyzing the results with statistical and risk metrics, and visualizing sample simulations using XChart.
+
 ## Motivation
-I built this project to learn how stochastic simulations are used in finance and to strengthen my understanding of Probability and Statistics
-## Objectives
-- Practice clean Java design
-- Simulate stock price movements
-- Compute basic financial risk metrics
-- Document the development process
-## Planned Features
-- Simulate one trading day
-- Simulate one stock price path
-- Simulate thousands of paths
-- Calculate expected return
-- Calculate volatility
-- Calculate Value at Risk (VaR)
+
+I built this project to learn how Monte Carlo simulations are used in quantitative finance while strengthening my understanding of probability, statistics, object-oriented programming, and data visualization in Java.
+
+## Features
+
+- Simulate stock price movements over configurable trading periods
+- Generate thousands of independent Monte Carlo simulations
+- Compute descriptive statistics:
+    - Mean
+    - Median
+    - Five-number summary
+- Calculate financial risk metrics:
+    - Probability of Loss
+    - Value at Risk (VaR)
+- Visualize simulated price paths using XChart
+- Unit tested with JUnit 5
+
+## Technologies
+
+- Java
+- Maven
+- JUnit 5
+- XChart
 
 ## Sample Simulation
 
-The figure below shows several simulated stock price paths generated using the Monte Carlo simulation. Each line represents a different possible future outcome for the same stock, demonstrating how uncertainty causes prices to diverge over time.
+The figure below shows a sample of 10 simulated stock price paths generated from a total of 1,000 Monte Carlo simulations. Each line represents one possible future stock price trajectory. Although all simulations begin at the same initial price, they diverge over time due to random daily returns, illustrating the uncertainty of future market movements.
 
 ![Monte Carlo Simulation](images/simulation-graph.png)
